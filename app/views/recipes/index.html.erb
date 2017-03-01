@@ -36,4 +36,18 @@
 
 <br>
 
+<div id="jquerecipes">
+</div>
+
 <%= link_to 'New Recipe', new_recipe_path %>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $.getJSON("/recipes", function(data){
+      $.each(data, function(i, recipe) {
+        content = '<h2>' + recipe.name + '</h2>';
+        $(content).appendTo("#jquerecipes");
+      });
+    });
+  });
+</script>
