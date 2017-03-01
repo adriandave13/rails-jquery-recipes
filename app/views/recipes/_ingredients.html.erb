@@ -1,0 +1,28 @@
+<h3>Ingredients</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recipe.recipe_ingredients.each_with_index do |recipe_ingredient, i| %>
+      <%= fields_for :recipe_ingredients, recipe_ingredient do |fq| %>
+        <tr>
+          <td><%= hidden_field_tag "recipe[recipe_ingredients][][id]", recipe_ingredient.id %></td>
+          <td><%= fq.text_field :ingredient_name, :name => "recipe[recipe_ingredients][][ingredient_name]" %></td>
+          <td><%= fq.text_field :quantity, :name => "recipe[recipe_ingredients][][quantity]" %></td>
+          <td><%= fq.text_field :unit, :name => "recipe[recipe_ingredients][][unit]" %></td>
+          <td><%= check_box_tag "recipe[recipe_ingredients][][delete]" %></td>
+          <td><%= fq.label :delete, 'delete' %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

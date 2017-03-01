@@ -1,0 +1,43 @@
+<h1><%= @recipe.name %></h1>
+
+<h3>Ingredients</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th colspan="3">Unit</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recipe.recipe_ingredients.each_with_index do |recipe_ingredient, i| %>
+      <tr>
+        <td><%= recipe_ingredient.ingredient_name %></td>
+        <td><%= recipe_ingredient.quantity %></td>
+        <td><%= recipe_ingredient.unit %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <h3>Instructions</h3><br />
+  <%= @recipe.instructions %>
+</p>
+
+<p>
+  <br />
+  <% if @recipe.user == current_user %>
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+  <% end %>
+  <%= link_to 'Back', recipes_path %>
+  <br />
+</p>
+
+<p>
+  <h3>Comments</h3><br />
+  <%= button_to "Add comment", new_recipe_comment_path(@recipe), method: :get, class: 'btn btn-outline-success btn-sm' %><br />
+  <%= render @comments %>
+</p>

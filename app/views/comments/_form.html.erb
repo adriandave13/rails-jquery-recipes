@@ -1,0 +1,17 @@
+<%= form_for [@recipe, @comment] do |f| %>
+
+  <% if @comment.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <% @comment.errors.full_messages.each do |msg| %>
+        <span><%= msg %></span><br />
+      <% end %>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.text_area :body, :rows => 2, :cols => 40 %>
+  </p>
+  <p>
+    <%= f.submit "Save Comment", class: 'btn btn-primary' %>
+  </p>
+<% end %>

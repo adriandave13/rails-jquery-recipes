@@ -1,0 +1,39 @@
+<h1>Recipes</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @recipes %>
+  </tbody>
+</table>
+
+<br>
+
+<h2>Quick Meals</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @recipes.quick_meals %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recipe', new_recipe_path %>

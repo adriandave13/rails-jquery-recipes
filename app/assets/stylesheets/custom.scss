@@ -1,0 +1,6 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.field_with_errors input, .field_with_errors textarea {
+  border: thin solid red;
+}

@@ -1,0 +1,34 @@
+<%= form_for @recipe do |f| %>
+
+  <% if @recipe.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <span><%= msg %></span><br />
+      <% end %>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.fields_for :recipe_ingredients do |ingredients_form| %>
+      <%= render "ingredients", :f => ingredients_form %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.submit 'Add ingredient', :name => "add_ingredient", class: 'btn btn-outline-success btn-sm' %>
+  </p>
+
+  <p>
+    <%= f.label :instructions %><br />
+    <%= f.text_area :instructions, :rows => 4, :cols => 50 %>
+  </p>
+
+  <p>
+    <%= f.submit "Save Recipe", class: 'btn btn-primary' %>
+  </p>
+<% end %>
