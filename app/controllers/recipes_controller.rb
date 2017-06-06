@@ -7,6 +7,9 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.html { render :index }
       format.json { render json: @recipes }
+      #format.json { render json: @recipes.to_json(:methods => [:flag]) }
+      #format.json { render json: @recipes.to_json(:include =>  :user )}
+      # albums: { include:  :songs }
     end
   end
 

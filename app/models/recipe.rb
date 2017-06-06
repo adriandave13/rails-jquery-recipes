@@ -25,4 +25,8 @@ class Recipe < ActiveRecord::Base
     end
   end
 
+  def flag
+    self.user.email
+  end
+
 end

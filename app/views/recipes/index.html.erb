@@ -10,8 +10,7 @@
     </tr>
   </thead>
 
-  <tbody>
-    <%= render @recipes %>
+  <tbody id="recipes">
   </tbody>
 </table>
 
@@ -29,15 +28,11 @@
     </tr>
   </thead>
 
-  <tbody>
-    <%= render @recipes.quick_meals %>
+  <tbody id="quick_meals">
   </tbody>
 </table>
 
 <br>
-
-<div id="jquerecipes">
-</div>
 
 <%= link_to 'New Recipe', new_recipe_path %>
 
@@ -45,8 +40,31 @@
   $(document).ready(function() {
     $.getJSON("/recipes", function(data){
       $.each(data, function(i, recipe) {
-        content = '<h2>' + recipe.name + '</h2>';
-        $(content).appendTo("#jquerecipes");
+        content = '<tr>'
+        content = content + '<td>' + recipe.name + '</td>';
+        content = content + '<td>' + '<a href="/recipes/' + recipe.id + '">Show</a></td>'
+        content = content + '<td>' + '<a href="/recipes/' + recipe.id + '/edit">Edit</a></td>'
+        content = content + '<td>' + '<a href="/recipes/' + recipe.id + ' data-method="DELETE">Delete</a></td>'
+        content = content + '</tr>'
+        $(content).appendTo("#recipes");
+      });
+    });
+  });
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $.getJSON("/recipes", function(data){
+      $.each(data, function(i, recipe) {
+        if (recipe.duration <= 30) {
+          content = '<tr>'
+          content = content + '<td>' + recipe.name + '</td>';
+          content = content + '<td>' + '<a href="/recipes/' + recipe.id + '">Show</a></td>'
+          content = content + '<td>' + '<a href="/recipes/' + recipe.id + '/edit">Edit</a></td>'
+          content = content + '<td>' + '<a href="/recipes/' + recipe.id + ' data-method="DELETE">Delete</a></td>'
+          content = content + '</tr>'
+          $(content).appendTo("#quick_meals");
+        }
       });
     });
   });
