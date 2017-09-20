@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, :except => [:index]
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index, :is_current_user]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :is_current_user]
 
   def index
     @recipes = Recipe.all
@@ -29,6 +29,17 @@ class RecipesController < ApplicationController
       end
     else
       redirect_to recipes_path
+    end
+  end
+
+  def is_current_user
+    if @recipe.user == current_user
+      @is_current_user = {"response" => true}
+    else
+      @is_current_user = {"response" => false}
+    end
+    respond_to do |format|
+      format.json { render json: @is_current_user }
     end
   end
 

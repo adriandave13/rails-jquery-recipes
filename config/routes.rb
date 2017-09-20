@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :comments
   end
+  get 'recipes/:id/is_current_user' => 'recipes#is_current_user'
   resources :ingredients
   resources :recipe_ingredients
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
