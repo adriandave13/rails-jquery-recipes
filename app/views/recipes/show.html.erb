@@ -28,6 +28,11 @@
 </p>
 
 <p>
+  <h3>Duration</h3><br />
+  <%= @recipe.duration %>
+</p>
+
+<p>
   <br />
   <% if @recipe.user == current_user %>
     <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
