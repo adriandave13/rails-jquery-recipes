@@ -50,7 +50,7 @@
                           async: false
                           }).responseText;
         var current_user = JSON.parse(current_user_text);
-        if (current_user.response) {
+        if (current_user.response == true) {
           content = content + '<td>' + '<a href="/recipes/' + recipe.id + '/edit">Edit</a></td>'
         } else {
           content = content + '<td></td>'
@@ -78,7 +78,7 @@
                             async: false
                             }).responseText;
           var current_user = JSON.parse(current_user_text);
-          if (current_user.response) {
+          if (current_user.response == true) {
             content = content + '<td>' + '<a href="/recipes/' + recipe.id + '/edit">Edit</a></td>'
           } else {
             content = content + '<td></td>'
