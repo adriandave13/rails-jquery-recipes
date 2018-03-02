@@ -6,4 +6,8 @@ class Comment < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :body
 
+  def user_email
+    self.try(:user).try(:email)
+  end
+
 end
