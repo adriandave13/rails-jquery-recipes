@@ -15,6 +15,10 @@ class RecipesController < ApplicationController
 
   def show
     @comments = @recipe.comments.order(created_at: :desc)
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @recipe }
+    end
   end
 
   def new

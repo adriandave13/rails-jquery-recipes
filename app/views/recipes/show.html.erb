@@ -1,4 +1,4 @@
-<h1><%= @recipe.name %></h1>
+<h1 data-id=<%= @recipe.id %>><span class="recipeName"></span></h1>
 
 <h3>Ingredients</h3>
 
@@ -11,25 +11,18 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @recipe.recipe_ingredients.each_with_index do |recipe_ingredient, i| %>
-      <tr>
-        <td><%= recipe_ingredient.ingredient_name %></td>
-        <td><%= recipe_ingredient.quantity %></td>
-        <td><%= recipe_ingredient.unit %></td>
-      </tr>
-    <% end %>
+  <tbody id="recipeIngredients">
   </tbody>
 </table>
 
 <p>
-  <h3>Instructions</h3><br />
-  <%= @recipe.instructions %>
+  <h3>Instructions</h3>
+  <p><span class="recipeInstructions"></span></p>
 </p>
 
 <p>
   <h3>Duration</h3><br />
-  <%= @recipe.duration %>
+  <p><span class="recipeDuration"></span></p>
 </p>
 
 <p>
