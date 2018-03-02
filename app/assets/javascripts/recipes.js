@@ -62,7 +62,9 @@ $(document).ready(function() {
     recipe_string = "/recipes/" + $('h1').data("id");
     $.getJSON(recipe_string, function(recipe){
       $(".recipeName").text(recipe.name);
-      $(".recipeInstructions").text(recipe.instructions);
+      $(".recipeInstructions").empty
+      var recipeInstructions = recipe.instructions.substring(0, 5) + "..."+ "<a href='#' data-id='" + recipe.id + "' class='js-more'>More</a>";
+      $(".recipeInstructions").append(recipeInstructions);
       $(".recipeDuration").text(recipe.duration);
       $.each(recipe.recipe_ingredients, function(key, element){
         var recipe_ingredient = element
@@ -94,3 +96,13 @@ Comment.prototype.displayComment = function() {
   content += "<p><hr><b>User:</b> " + this.user_email + "</p><p><b>Comment:</b> " + this.body + "</p>";
   $("#recipeComments").append(content);
 }
+
+$(document).ready(function() {
+  $(".recipeInstructions").on('click', '.js-more', function(e) {
+    e.preventDefault();
+    var id = this.dataset.id;
+    $.get("/recipes/" + id + ".json", function(data) {
+      $(".recipeInstructions").text(data.instructions)
+    });
+  });
+});
